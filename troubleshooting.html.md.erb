@@ -7,7 +7,7 @@ This topic broadly outlines techniques for troubleshooting your Concourse OLM in
 
 ## Concourse OLM Log Collection
 
-Find the logs for a specific job in the VM on which that job was running. Those logs are stored at <code>/var/vcap/sys/log/<\CONCOURSE-JOB-NAME>/*.log.</code> 
+Find the logs for a specific job in the VM on which that job was running. Those logs are stored at <code>/var/vcap/sys/log/<<span>C</span>ONCOURSE-JOB-NAME>/*.log</code>. 
 
 ## Troubleshooting With Fly Commands
 
@@ -31,7 +31,7 @@ Checks pipeline for validity without calling <code>set-pipeline</code>.
 This is useful when developing a new resource.
 <code>watch</code>: View logs of in-progress builds
 <code>intercept</code>: Accesses a running or recent build's steps
-<code>execute</code>: Submits Local Tasks
+<code>execute</code>: Submits local tasks
 This is useful for spinning up a task quickly to test before putting it in a job.
 
 ## Common Concourse OLM Issues
@@ -47,7 +47,7 @@ This is useful for spinning up a task quickly to test before putting it in a job
     <td>N/A</td>
   </tr>
   <tr>
-    <td>Container Limit Reached</td>
+    <td>Container limit reached</td>
     <td>Cannot create container: limit of 250 containers reached</td>
     <td>Check fly containers<br/>
     Increase number of worker VMs<br/>
@@ -55,16 +55,15 @@ This is useful for spinning up a task quickly to test before putting it in a job
     <td>This error state is unlikely to appear.</td>
   </tr>
   <tr>
-    <td>Job Doesn't Start</td>
+    <td>Job doesn't start</td>
     <td>This error may present as the build getting stuck in Pending state</td>
     <td>Restart the ATC job.<br/>
-    To restart the ATC, log in as a root user on Concourse OLM web VMs (the ones on which ATC job is located), then running <code>monit restart atc</code>.<br/>
-    Alternatively, run <code>bosh restart web --force</code>, which will be slower than the previous option.</td>
+    To restart the ATC, log in as a root user on Concourse OLM web VMs (the ones on which ATC job is located), then running <code>monit restart atc</code>.</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td>Updating Concourse OLM in Concourse OLM Job fails</td>
-    <td>When BOSH deploying a Concourse OLM update from a job running on that Concourse OLM instance fails, typically the job will error with "worker for container not found." This is expected behavior; the BOSH Director will recreate the worker VM.</td>
+    <td>Updating Concourse OLM in Concourse OLM job fails</td>
+    <td>When a build fails after BOSH deploying a Concourse OLM update from a job running on that Concourse OLM instance, typically the job will error with "worker for container not found." This is expected behavior; the BOSH Director will recreate the worker VM.</td>
     <td>Run the job again.</td>
     <td>N/A</td>
   </tr>
@@ -77,8 +76,8 @@ This is useful for spinning up a task quickly to test before putting it in a job
   </tr>
 </table>
 
-## Other troubleshooting resources
+## Other Troubleshooting Resources
 
-Monitoring Concourse for metrics: http://concourse.ci/metrics.html
-To enable syslog forwarding or to get logs for other components of concourse refer to: https://bosh.io/docs/job-logs.html.
-Common bosh Issues: https://bosh.io/docs/tips.html
+For information about metrics for monitoring Concourse, see [Metrics](http://concourse.ci/metrics.html).
+For information about enabling syslog forwarding and about getting logs for other Concourse components, see [VM Logs](https://bosh.io/docs/job-logs.html).
+For information about common BOSH issues, see [the BOSH tips](https://bosh.io/docs/tips.html).
